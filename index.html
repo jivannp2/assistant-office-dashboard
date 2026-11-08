@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AetherCore Virtual Assistant Office Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Topbar Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">AetherCore Office</h1>
+        <p class="brand-subtitle">Virtual Assistant Command Center v2.4</p>
+      </div>
+    </div>
+    
+    <div class="top-status">
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <span>Office Online (4 Pods Active)</span>
+      </div>
+      <button id="quick-trigger-btn" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <span>Run All Automations</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Department Tabs -->
+  <nav class="nav-tabs" aria-label="Departments">
+    <button class="nav-btn active" data-dept="all">
+      <span class="tab-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </span>
+      <span>All Departments</span>
+    </button>
+    <button class="nav-btn" data-dept="tech">
+      <span class="tab-icon" style="color: var(--tech-accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </span>
+      <span>Tech & Code</span>
+    </button>
+    <button class="nav-btn" data-dept="operations">
+      <span class="tab-icon" style="color: var(--ops-accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </span>
+      <span>Operations</span>
+    </button>
+    <button class="nav-btn" data-dept="server">
+      <span class="tab-icon" style="color: var(--server-accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+      </span>
+      <span>Server & Infra</span>
+    </button>
+    <button class="nav-btn" data-dept="ai">
+      <span class="tab-icon" style="color: var(--ai-accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.7 9.3"/><path d="M12 12l9.3 2.7"/></svg>
+      </span>
+      <span>AI Core</span>
+    </button>
+  </nav>
+
+  <!-- Main Office Dashboard Container -->
+  <main class="dashboard-container">
+    
+    <!-- Office Floor Map View -->
+    <section class="section floor-plan-section">
+      <div class="section-header">
+        <h2>Virtual Office Floor Map</h2>
+        <span class="section-hint">Tap any department cabin to filter workflows</span>
+      </div>
+      
+      <div class="floor-grid">
+        <!-- Tech Cabin -->
+        <div class="floor-zone zone-tech active" data-target="tech">
+          <div class="zone-badge" style="background: var(--tech-dim); color: var(--tech-accent);">Tech Pod</div>
+          <h3 class="zone-title">Engineering & Code</h3>
+          <p class="zone-status">Agents active: 3 • Build queue: 0</p>
+          <div class="zone-load-bar"><div class="zone-load-fill" style="width: 78%; background: var(--tech-accent);"></div></div>
+        </div>
+
+        <!-- Operations Cabin -->
+        <div class="floor-zone zone-ops" data-target="operations">
+          <div class="zone-badge" style="background: var(--ops-dim); color: var(--ops-accent);">Ops Pod</div>
+          <h3 class="zone-title">Client & Workflow</h3>
+          <p class="zone-status">Agents active: 4 • Ticket backlog: 2</p>
+          <div class="zone-load-bar"><div class="zone-load-fill" style="width: 45%; background: var(--ops-accent);"></div></div>
+        </div>
+
+        <!-- Server Cabin -->
+        <div class="floor-zone zone-server" data-target="server">
+          <div class="zone-badge" style="background: var(--server-dim); color: var(--server-accent);">Infra Pod</div>
+          <h3 class="zone-title">Servers & Clusters</h3>
+          <p class="zone-status">Nodes online: 12 • Load: 31%</p>
+          <div class="zone-load-bar"><div class="zone-load-fill" style="width: 31%; background: var(--server-accent);"></div></div>
+        </div>
+
+        <!-- AI Core Cabin -->
+        <div class="floor-zone zone-ai" data-target="ai">
+          <div class="zone-badge" style="background: var(--ai-dim); color: var(--ai-accent);">Neural Pod</div>
+          <h3 class="zone-title">AI Orchestration</h3>
+          <p class="zone-status">Embeddings synced • Latency 14ms</p>
+          <div class="zone-load-bar"><div class="zone-load-fill" style="width: 89%; background: var(--ai-accent);"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Task & Workflow Control Panel -->
+    <div class="dashboard-grid">
+      
+      <!-- Left Column: Tasks Queue -->
+      <section class="section tasks-section">
+        <div class="section-header-flex">
+          <div>
+            <h2>Department Tasks</h2>
+            <p class="section-hint">Active queue and automated workflows</p>
+          </div>
+          <button id="add-task-trigger" class="btn-primary btn-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>New Task</span>
+          </button>
+        </div>
+
+        <div class="filter-chips">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="tech">Tech</button>
+          <button class="chip" data-filter="operations">Operations</button>
+          <button class="chip" data-filter="server">Server</button>
+          <button class="chip" data-filter="ai">AI Core</button>
+        </div>
+
+        <div id="tasks-list" class="tasks-list">
+          <!-- Populated by app.js -->
+        </div>
+      </section>
+
+      <!-- Right Column: Automations & Audit Logs -->
+      <div class="sidebar-column">
+        
+        <!-- Automated Assistant Statuses -->
+        <section class="section automations-section">
+          <div class="section-header">
+            <h2>Assistant Dispatchers</h2>
+            <span class="section-hint">Background automation daemons</span>
+          </div>
+          <div id="automations-list" class="automations-list">
+            <!-- Populated by app.js -->
+          </div>
+        </section>
+
+        <!-- Live Audit Log Stream -->
+        <section class="section audit-section">
+          <div class="section-header-flex">
+            <h2>Live Office Audit Log</h2>
+            <button id="clear-logs-btn" class="btn-secondary btn-sm">Clear</button>
+          </div>
+          <div id="audit-log-stream" class="audit-log-stream">
+            <!-- Populated by app.js -->
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- New Task Modal -->
+  <div id="task-modal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Dispatch New Assistant Task</h3>
+        <button id="close-modal-btn" class="modal-close">&times;</button>
+      </div>
+      <form id="new-task-form">
+        <div class="form-group">
+          <label for="task-name">Task Description / Title</label>
+          <input type="text" id="task-name" required placeholder="e.g., Optimize PostgreSQL indexes">
+        </div>
+        <div class="form-group">
+          <label for="task-dept">Department Pod</label>
+          <select id="task-dept">
+            <option value="tech">Tech & Code</option>
+            <option value="operations">Operations</option>
+            <option value="server">Server & Infra</option>
+            <option value="ai">AI Core</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="task-priority">Priority Level</label>
+          <select id="task-priority">
+            <option value="normal">Normal Priority</option>
+            <option value="high">High Priority</option>
+            <option value="urgent">Urgent / Emergency</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-task-btn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Dispatch Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
